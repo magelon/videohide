@@ -1,0 +1,92 @@
+<html ng-app="plunker">
+<head>
+
+<title>SkilltreeApp</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+
+ <script>
+$(function(){
+     for(var i=1;i<=12;i++){
+         $("#episode").append("<div id='eps' class='col-md-1' >"+i+"</div>");
+
+
+      }
+
+
+});
+
+
+
+
+var app = angular.module('plunker', []);
+
+app.controller('MainCtrl', function($scope) {
+  $scope.name = 'World';
+});
+
+app.directive('filterList', function($timeout) {
+    return {
+        link: function(scope, element, attrs) {
+
+            var li = Array.prototype.slice.call(element[0].children);
+
+            function filterMatch(value) {
+                li.forEach(function(el) {
+
+    console.log( el.className);
+
+                    el.className = el.textContent.toLowerCase() === value.toLowerCase() ? '' : 'ng-hide';
+                });
+            }
+
+            scope.$watch(attrs.filterList, function(newVal, oldVal) {
+                if (newVal !== oldVal) {
+                    filterMatch(newVal);
+                }
+            });
+        }
+    };
+});
+
+
+</script>
+
+
+</head>
+<body ng-controller="MainCtrl">
+<img src="https://pic.pimg.tw/mp392007/1447206817-1931102015_n.jpg?v=1447206819" /><br />
+
+ <div class="row" id="episode"></div>
+<br>
+    <input id="inputa" ng-model="search" placeholder="Search 1 for first episode!" type="search" />
+
+    <ul filter-list="search" ng-show="search">
+<li>1<iframe height="480" src="https://drive.google.com/file/d/0BwVvJxNk_hBAMHNCSlpDa1lGWFk/preview" width="640"></iframe></li>
+<li>2<iframe height="480" src="https://drive.google.com/file/d/0BwVvJxNk_hBAdldqNXlfRUdwMVE/preview" width="640"></iframe></li>
+<li>3<iframe height="480" src="https://drive.google.com/file/d/0BwVvJxNk_hBAV1ZocGM3U19NdVk/preview" width="640"></iframe></li>
+<li>4<iframe height="480" src="https://drive.google.com/file/d/0BwVvJxNk_hBAbURfY1Vsb3c3QXc/preview" width="640"></iframe></li>
+<li>5<iframe height="480" src="https://drive.google.com/file/d/0BwVvJxNk_hBAUmlDQi1DVTQ2ajg/preview" width="640"></iframe></li>
+<li>6<iframe height="480" src="https://drive.google.com/file/d/0BwVvJxNk_hBAY0lTRVRoM1dERDQ/preview" width="640"></iframe></li>
+<li>7<iframe height="480" src="https://drive.google.com/file/d/0BwVvJxNk_hBAUmdIYTd5TWlCa00/preview" width="640"></iframe></li>
+<li>8<iframe height="480" src="https://drive.google.com/file/d/0B5aYhS5Cr8sTMmZvSnpLQ0xrbmM/preview" width="640"></iframe></li>
+<li>9<iframe height="480" src="https://drive.google.com/file/d/0B5aYhS5Cr8sTc1pubkxrRmNlNDA/preview" width="640"></iframe></li>
+<li>10<iframe height="480" src="https://drive.google.com/file/d/0B5aYhS5Cr8sTamg4NU1pc2hDaW8/preview" width="640"></iframe></li>
+<li>11<iframe height="480" src="https://drive.google.com/file/d/0B0_WO1i0eFynTldoa0F2QVVXTmc/preview" width="640"></iframe></li>
+<li>12<iframe height="480" src="https://drive.google.com/file/d/0B0_WO1i0eFynZVpqWVBIUl91ZVE/preview" width="640"></iframe></li>
+</ul>
+</body>
+
+</html>
